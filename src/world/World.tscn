@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/planets/Planet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/world/World.gd" type="Script" id=2]
+[ext_resource path="res://src/ships/Spaceship.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/world/Camera2D.gd" type="Script" id=4]
+[ext_resource path="res://src/ui/ResourceUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/ui/ResourceUI.gd" type="Script" id=6]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Spaceship" parent="." instance=ExtResource( 3 )]
+position = Vector2( 130.727, 48.3204 )
+
+[node name="RemoteTransform2D" parent="Spaceship" index="5"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 130.727, 48.3204 )
+current = true
+script = ExtResource( 4 )
+
+[node name="Planets" type="Node" parent="."]
+
+[node name="Planet" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 87.8737, 74.6296 )
+
+[node name="Planet2" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 250.44, 130.441 )
+
+[node name="Planet3" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 406.462, 408.812 )
+
+[node name="Planet4" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( -480.283, 519.936 )
+
+[node name="Planet5" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( -359.057, -262.42 )
+
+[node name="Planet6" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( -730.592, -86.1937 )
+
+[node name="Planet7" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 683.71, -325.278 )
+
+[node name="Planet8" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 1294.33, -62.622 )
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="ResourceUI" parent="GUI" instance=ExtResource( 5 )]
+script = ExtResource( 6 )
+[connection signal="update_resources" from="Spaceship" to="." method="_on_Spaceship_update_resources"]
+
+[editable path="Spaceship"]

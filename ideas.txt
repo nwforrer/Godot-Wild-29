@@ -1,0 +1,12 @@
+Theme : Nomad
+Wildcards: Educational, pet/companion, upgrades
+	
+- Space aliens moving from planet to planet gathering resources. 
+	- Resources no longer grow if you take too many
+	- limited number of planets, so need to make sure they still regenerate resources
+	- use resources for oxygen, food
+	- must fight other space nomads for resources
+	- win condition?
+		- just increase difficulty until it's impossible to continue?
+		- control all the planet's and their resources?
+	
