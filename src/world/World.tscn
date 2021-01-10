@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://src/planets/Planet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/planets/ResourcePlanet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/world/World.gd" type="Script" id=2]
 [ext_resource path="res://src/ships/Spaceship.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/world/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://src/ui/ResourceUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/ui/ResourceUI.gd" type="Script" id=6]
+[ext_resource path="res://src/planets/MerchantPlanet.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/ui/QuestDialog.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/ui/SellDialog.tscn" type="PackedScene" id=9]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
@@ -23,34 +26,57 @@ script = ExtResource( 4 )
 
 [node name="Planets" type="Node" parent="."]
 
-[node name="Planet" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 87.8737, 74.6296 )
+[node name="ResourcePlanet2" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 240.814, 114.461 )
 
-[node name="Planet2" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 250.44, 130.441 )
+[node name="ResourcePlanet3" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 370.141, -8.91902 )
 
-[node name="Planet3" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 406.462, 408.812 )
+[node name="ResourcePlanet4" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 414.588, 152.996 )
 
-[node name="Planet4" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( -480.283, 519.936 )
+[node name="ResourcePlanet5" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( -83.8561, 263.32 )
 
-[node name="Planet5" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( -359.057, -262.42 )
+[node name="ResourcePlanet6" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( -329.903, 77.5943 )
 
-[node name="Planet6" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( -730.592, -86.1937 )
+[node name="ResourcePlanet7" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( -405.305, -166.072 )
 
-[node name="Planet7" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 683.71, -325.278 )
+[node name="ResourcePlanet8" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 130.443, -261.316 )
 
-[node name="Planet8" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 1294.33, -62.622 )
+[node name="ResourcePlanet9" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 826.518, -173.215 )
+
+[node name="ResourcePlanet10" parent="Planets" instance=ExtResource( 1 )]
+position = Vector2( 886.839, 110.136 )
+
+[node name="MerchantPlanet" parent="Planets" instance=ExtResource( 7 )]
+position = Vector2( 15.874, 76.989 )
+MERCHANT_DIALOG = "We request 15 resources"
+RESOURCE_REQUEST_AMOUNT = 5
+
+[node name="MerchantPlanet2" parent="Planets" instance=ExtResource( 7 )]
+position = Vector2( 404.787, 293.669 )
+MERCHANT_DIALOG = "We request 5 resources"
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="ResourceUI" parent="GUI" instance=ExtResource( 5 )]
 script = ExtResource( 6 )
+
+[node name="QuestDialog" parent="GUI" instance=ExtResource( 8 )]
+visible = false
+
+[node name="SellDialog" parent="GUI" instance=ExtResource( 9 )]
+visible = false
+[connection signal="remove_dialog" from="Spaceship" to="." method="_on_Spaceship_remove_dialog"]
+[connection signal="show_dialog" from="Spaceship" to="." method="_on_Spaceship_show_dialog"]
+[connection signal="show_sell_dialog" from="Spaceship" to="." method="_on_Spaceship_show_sell_dialog"]
 [connection signal="update_resources" from="Spaceship" to="." method="_on_Spaceship_update_resources"]
+[connection signal="camera_zoom_updated" from="Camera2D" to="." method="_on_Camera2D_camera_zoom_updated"]
+[connection signal="resources_sold" from="GUI/SellDialog" to="." method="_on_SellDialog_resources_sold"]
 
 [editable path="Spaceship"]

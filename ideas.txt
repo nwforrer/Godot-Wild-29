@@ -4,6 +4,8 @@ Wildcards: Educational, pet/companion, upgrades
 - Space aliens moving from planet to planet gathering resources. 
 	- Resources no longer grow if you take too many
 	- limited number of planets, so need to make sure they still regenerate resources
+	- pickup orders from certain planets, fulfil order to move onto next level
+	
 	- use resources for oxygen, food
 	- must fight other space nomads for resources
 	- win condition?

@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/ui/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/ui/SellDialog.gd" type="Script" id=2]
+
+[node name="SellDialog" type="Control"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -115.074
+margin_top = -43.367
+margin_right = 114.926
+margin_bottom = -0.367004
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -90.9256
+margin_top = -20.633
+margin_right = 91.0744
+margin_bottom = -2.633
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SellLabel" type="Label" parent="HBoxContainer"]
+margin_right = 142.0
+margin_bottom = 18.0
+text = "Sell 15 Resources?"
+
+[node name="SellButton" type="Button" parent="HBoxContainer"]
+margin_left = 146.0
+margin_right = 182.0
+margin_bottom = 18.0
+text = "Yes"
+[connection signal="pressed" from="HBoxContainer/SellButton" to="." method="_on_SellButton_pressed"]

@@ -1,5 +1,7 @@
 extends Camera2D
 
+signal camera_zoom_updated(zoom_amount)
+
 enum ZoomState {
 	NEAR = 1,
 	FAR = 5,
@@ -42,4 +44,6 @@ func _determine_zoom():
 				new_zoom_level = ZoomState.NEAR
 				break
 	
+	if current_zoom_state != new_zoom_level:
+		emit_signal("camera_zoom_updated", new_zoom_level)
 	current_zoom_state = new_zoom_level
