@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/ships/AIController.gd" type="Script" id=1]
+
+[node name="AIController" type="Node"]
+script = ExtResource( 1 )
+MovementController = NodePath("../MovementController")
+
+[node name="AccelerationTimer" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="AccelerationTimer" to="." method="_on_AccelerationTimer_timeout"]

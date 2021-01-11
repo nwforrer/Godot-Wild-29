@@ -2,8 +2,17 @@
 
 [ext_resource path="res://assets/spaceship.png" type="Texture" id=1]
 [ext_resource path="res://src/ships/MovementController.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/ships/PlayerController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ships/Spaceship.gd" type="Script" id=4]
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+gravity = Vector3( 20, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+color = Color( 0.94902, 0.827451, 0.670588, 1 )
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 5.13028
@@ -15,6 +24,13 @@ radius = 31.5274
 collision_layer = 2
 script = ExtResource( 4 )
 
+[node name="GatheringParticles" type="Particles2D" parent="."]
+emitting = false
+amount = 10
+lifetime = 1.75
+preprocess = 1.0
+process_material = SubResource( 3 )
+
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.23597, -4.12945 )
 texture = ExtResource( 1 )
@@ -23,8 +39,6 @@ texture = ExtResource( 1 )
 visible = false
 position = Vector2( 0.0589905, 1.90735e-06 )
 shape = SubResource( 1 )
-
-[node name="PlayerController" parent="." instance=ExtResource( 3 )]
 
 [node name="MovementController" parent="." instance=ExtResource( 2 )]
 FAR_MAX_SPEED = 200.0
@@ -35,8 +49,6 @@ collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource( 2 )
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 
 [node name="GatheringTimer" type="Timer" parent="."]
 autostart = true

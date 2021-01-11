@@ -29,11 +29,16 @@ func _process(delta: float) -> void:
 
 
 func add_visible_planet(planet):
-	visible_planets.append(planet)
+	if planet and not planet.is_queued_for_deletion():
+		visible_planets.append(planet)
 
 
 func remove_visible_planet(planet):
 	visible_planets.append(planet)
+
+
+func clear_visible_planets():
+	visible_planets.clear()
 
 
 func _determine_zoom():

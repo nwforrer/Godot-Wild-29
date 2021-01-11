@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot Wild 29"
-run/main_scene="res://src/world/World.tscn"
+run/main_scene="res://src/ui/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [display]

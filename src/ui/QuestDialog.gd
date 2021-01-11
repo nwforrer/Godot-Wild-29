@@ -1,11 +1,7 @@
 extends Control
 
-onready var dialog_text_label = $DialogText
+onready var dialog_text_label = $CenterContainer/DialogText
 onready var typing_timer = $TypingTimer
-
-
-func _ready() -> void:
-	hide()
 
 
 func display_dialog(text: String) -> void:

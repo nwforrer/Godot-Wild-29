@@ -38,7 +38,8 @@ text = "Sell 15 Resources?"
 
 [node name="SellButton" type="Button" parent="HBoxContainer"]
 margin_left = 146.0
-margin_right = 182.0
+margin_right = 186.0
 margin_bottom = 18.0
+rect_min_size = Vector2( 40, 18 )
 text = "Yes"
 [connection signal="pressed" from="HBoxContainer/SellButton" to="." method="_on_SellButton_pressed"]

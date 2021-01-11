@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/planets/MerchantPlanet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/planets/ResourcePlanet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/levels/Level.tscn" type="PackedScene" id=3]
+
+[node name="Level00" instance=ExtResource( 3 )]
+
+[node name="MerchantPlanet" parent="Planets" index="0" instance=ExtResource( 1 )]
+position = Vector2( -123.488, 58.4582 )
+RESOURCE_REQUEST_AMOUNT = 5
+
+[node name="ResourcePlanet" parent="Planets" index="1" instance=ExtResource( 2 )]
+position = Vector2( 72.7592, 53.5513 )

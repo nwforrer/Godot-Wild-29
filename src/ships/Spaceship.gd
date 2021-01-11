@@ -1,12 +1,8 @@
 extends KinematicBody2D
 
-signal update_resources(value)
-signal show_dialog(text)
-signal remove_dialog()
-signal show_sell_dialog(amount)
-
 onready var movement_controller = $MovementController
 onready var gathering_timer: Timer = $GatheringTimer
+onready var gathering_particles = $GatheringParticles
 
 var resources_held: int = 0 setget set_resources_held
 var planet_target: Planet = null
@@ -15,16 +11,17 @@ var planet_target: Planet = null
 func _process(_delta: float) -> void:
 	if planet_target and not movement_controller.is_accelerating():
 		movement_controller.stop_movement()
+	if planet_target and planet_target.PLANET_TYPE == Planet.PlanetType.RESOURCE and planet_target.can_regenerate:
+		var particle_dir = -(planet_target.global_position - global_position).normalized()
+		gathering_particles.global_position = planet_target.global_position
+		gathering_particles.global_rotation_degrees = rad2deg(particle_dir.angle())
+		gathering_particles.emitting = true
+		gathering_particles.show()
+	else:
+		gathering_particles.emitting = false
+		gathering_particles.hide()
 	
 	update()
-
-
-func sell_resources() -> void:
-	print("selling resources")
-	if planet_target and planet_target.PLANET_TYPE == Planet.PlanetType.MERCHANT:
-		resources_held -= planet_target.get_requested_amount()
-		planet_target.sell_resources()
-		emit_signal("update_resources", resources_held)
 
 
 func _draw() -> void:
@@ -38,22 +35,11 @@ func _on_InteractionArea_body_entered(body: Node) -> void:
 		
 	var planet = body as Planet
 	if planet:
-		if planet.PLANET_TYPE == Planet.PlanetType.RESOURCE:
-			print("gathering resources from: " + str(body))
-		elif planet.PLANET_TYPE == Planet.PlanetType.MERCHANT:
-			if planet.can_buy and resources_held >= planet.get_requested_amount():
-				emit_signal("show_sell_dialog", planet.get_requested_amount())
-			else:
-				emit_signal("show_dialog", planet.get_dialog())
 		planet_target = planet
 
 
 func _on_InteractionArea_body_exited(body: Node) -> void:
 	if planet_target and planet_target == body:
-		if planet_target.PLANET_TYPE == Planet.PlanetType.RESOURCE:
-			print("stopped gathering from " + str(body))
-		elif planet_target.PLANET_TYPE == Planet.PlanetType.MERCHANT:
-			emit_signal("remove_dialog")
 		planet_target = null
 
 
@@ -64,12 +50,3 @@ func _on_GatheringTimer_timeout() -> void:
 
 func set_resources_held(value: int) -> void:
 	resources_held = value
-	emit_signal("update_resources", resources_held)
-
-
-func camera_zoom_updated(zoom_amount) -> void:
-	if zoom_amount == 1:
-		movement_controller.max_speed = movement_controller.CLOSE_MAX_SPEED
-	else:
-		movement_controller.max_speed = movement_controller.FAR_MAX_SPEED
-

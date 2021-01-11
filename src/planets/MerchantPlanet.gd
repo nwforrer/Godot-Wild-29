@@ -1,5 +1,7 @@
 extends Planet
 
+signal resources_bought(planet)
+
 export(String) var MERCHANT_DIALOG
 
 export(int) var RESOURCE_REQUEST_AMOUNT
@@ -22,4 +24,5 @@ func get_requested_amount() -> int:
 
 func sell_resources() -> void:
 	can_buy = false
+	emit_signal("resources_bought", self)
 	quest_marker.hide()

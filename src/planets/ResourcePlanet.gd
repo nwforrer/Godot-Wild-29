@@ -1,5 +1,7 @@
 extends Planet
 
+signal resources_exhausted(planet)
+
 export(int) var MAX_RESOURCES = 10
 onready var remaining_resources: int = MAX_RESOURCES setget set_remaining_resources
 
@@ -22,7 +24,7 @@ func _on_RegenerateTimer_timeout() -> void:
 func set_remaining_resources(value: int) -> void:
 	remaining_resources = clamp(value, 0, MAX_RESOURCES) as int
 	if remaining_resources == 0 and can_regenerate:
-		print(str(self) + " has no more resources")
 		regenerate_timer.stop()
 		can_regenerate = false
 		modulate = Color.red
+		emit_signal("resources_exhausted", self)

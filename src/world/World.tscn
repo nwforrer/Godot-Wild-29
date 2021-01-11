@@ -1,66 +1,28 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://src/planets/ResourcePlanet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/levels/Level01.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/world/World.gd" type="Script" id=2]
-[ext_resource path="res://src/ships/Spaceship.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/ships/PlayerShip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/world/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://src/ui/ResourceUI.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/ui/ResourceUI.gd" type="Script" id=6]
-[ext_resource path="res://src/planets/MerchantPlanet.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/ui/NextLevelScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/ui/QuestDialog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/ui/SellDialog.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/levels/Level00.tscn" type="PackedScene" id=10]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
+Levels = [ ExtResource( 10 ), ExtResource( 1 ) ]
 
 [node name="Spaceship" parent="." instance=ExtResource( 3 )]
-position = Vector2( 130.727, 48.3204 )
 
-[node name="RemoteTransform2D" parent="Spaceship" index="5"]
+[node name="RemoteTransform2D" parent="Spaceship" index="6"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 130.727, 48.3204 )
 current = true
 script = ExtResource( 4 )
-
-[node name="Planets" type="Node" parent="."]
-
-[node name="ResourcePlanet2" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 240.814, 114.461 )
-
-[node name="ResourcePlanet3" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 370.141, -8.91902 )
-
-[node name="ResourcePlanet4" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 414.588, 152.996 )
-
-[node name="ResourcePlanet5" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( -83.8561, 263.32 )
-
-[node name="ResourcePlanet6" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( -329.903, 77.5943 )
-
-[node name="ResourcePlanet7" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( -405.305, -166.072 )
-
-[node name="ResourcePlanet8" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 130.443, -261.316 )
-
-[node name="ResourcePlanet9" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 826.518, -173.215 )
-
-[node name="ResourcePlanet10" parent="Planets" instance=ExtResource( 1 )]
-position = Vector2( 886.839, 110.136 )
-
-[node name="MerchantPlanet" parent="Planets" instance=ExtResource( 7 )]
-position = Vector2( 15.874, 76.989 )
-MERCHANT_DIALOG = "We request 15 resources"
-RESOURCE_REQUEST_AMOUNT = 5
-
-[node name="MerchantPlanet2" parent="Planets" instance=ExtResource( 7 )]
-position = Vector2( 404.787, 293.669 )
-MERCHANT_DIALOG = "We request 5 resources"
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -72,11 +34,17 @@ visible = false
 
 [node name="SellDialog" parent="GUI" instance=ExtResource( 9 )]
 visible = false
+
+[node name="NextLevelScreen" parent="GUI" instance=ExtResource( 7 )]
+visible = false
 [connection signal="remove_dialog" from="Spaceship" to="." method="_on_Spaceship_remove_dialog"]
 [connection signal="show_dialog" from="Spaceship" to="." method="_on_Spaceship_show_dialog"]
 [connection signal="show_sell_dialog" from="Spaceship" to="." method="_on_Spaceship_show_sell_dialog"]
 [connection signal="update_resources" from="Spaceship" to="." method="_on_Spaceship_update_resources"]
 [connection signal="camera_zoom_updated" from="Camera2D" to="." method="_on_Camera2D_camera_zoom_updated"]
 [connection signal="resources_sold" from="GUI/SellDialog" to="." method="_on_SellDialog_resources_sold"]
+[connection signal="pressed" from="GUI/NextLevelScreen/CenterContainer/HBoxContainer/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
 
 [editable path="Spaceship"]
+
+[editable path="GUI/NextLevelScreen"]
