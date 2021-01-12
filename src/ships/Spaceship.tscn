@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/spaceship.png" type="Texture" id=1]
 [ext_resource path="res://src/ships/MovementController.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/ships/GatheringComponent.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ships/Spaceship.gd" type="Script" id=4]
 
 [sub_resource type="ParticlesMaterial" id=3]
@@ -50,8 +51,12 @@ collision_layer = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 shape = SubResource( 2 )
 
-[node name="GatheringTimer" type="Timer" parent="."]
-autostart = true
+[node name="GatheringComponent" parent="." instance=ExtResource( 3 )]
+CONTROLLING_NODE = NodePath("..")
+
+[node name="MinerDetector" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 30, 0 )
+collision_mask = 8
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_InteractionArea_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_InteractionArea_body_exited"]
-[connection signal="timeout" from="GatheringTimer" to="." method="_on_GatheringTimer_timeout"]

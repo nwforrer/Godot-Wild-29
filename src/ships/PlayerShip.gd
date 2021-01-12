@@ -25,34 +25,22 @@ func _draw() -> void:
 		draw_line(global_position - global_position, planet_target.global_position - global_position, Color("fbf5ef"), 5.0)
 
 
-func _on_InteractionArea_body_entered(body: Node) -> void:
-	if planet_target:
-		return
-		
-	var planet = body as Planet
+func set_planet_target(planet: Planet) -> void:
 	if planet:
 		if planet.PLANET_TYPE == Planet.PlanetType.MERCHANT:
 			if planet.can_buy and resources_held >= planet.get_requested_amount():
 				emit_signal("show_sell_dialog", planet.get_requested_amount())
 			else:
 				emit_signal("show_dialog", planet.get_dialog())
-		planet_target = planet
-
-
-func _on_InteractionArea_body_exited(body: Node) -> void:
-	if planet_target and planet_target == body:
+	else:
 		if planet_target.PLANET_TYPE == Planet.PlanetType.MERCHANT:
 			emit_signal("remove_dialog")
-		planet_target = null
+	
+	.set_planet_target(planet)
 
-
-func _on_GatheringTimer_timeout() -> void:
-	if planet_target != null and planet_target.PLANET_TYPE == Planet.PlanetType.RESOURCE and planet_target.can_consume():
-		planet_target.consume_resource()
-		self.resources_held += 1
 
 func set_resources_held(value: int) -> void:
-	resources_held = value
+	.set_resources_held(value)
 	emit_signal("update_resources", resources_held)
 
 
@@ -62,3 +50,6 @@ func camera_zoom_updated(zoom_amount) -> void:
 	else:
 		movement_controller.max_speed = movement_controller.FAR_MAX_SPEED
 
+
+func _on_PlayerController_launch_miner() -> void:
+	_launch_miner()

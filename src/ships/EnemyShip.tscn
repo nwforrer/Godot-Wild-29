@@ -14,5 +14,5 @@ Target = NodePath("../../EnemyShip")
 
 [node name="AIController" parent="." index="5" instance=ExtResource( 3 )]
 
-[node name="GatheringTimer" parent="." index="6"]
-wait_time = 2.0
+[node name="GatheringComponent" parent="." index="6"]
+GATHER_SPEED = 2.0

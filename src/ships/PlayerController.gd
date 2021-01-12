@@ -1,5 +1,7 @@
 extends Node
 
+signal launch_miner
+
 export(NodePath) var MovementController
 onready var movement_controller: MovementController = get_node(MovementController)
 
@@ -11,3 +13,6 @@ func _process(_delta: float) -> void:
 	movement_dir = movement_dir.normalized()
 	
 	movement_controller.movement_dir = movement_dir
+	
+	if Input.is_action_just_pressed("launch_miner"):
+		emit_signal("launch_miner")

@@ -43,6 +43,9 @@ func _load_level(index: int) -> void:
 	
 	player_ship.global_position = Vector2.ZERO
 	
+	for miner in get_tree().get_nodes_in_group("miner"):
+		miner.queue_free()
+	
 	var next_level = Levels[index]
 	current_level = next_level.instance()
 	add_child(current_level)
@@ -88,6 +91,7 @@ func _planet_resources_exhausted(planet):
 			required_resources += merchant_planet.RESOURCE_REQUEST_AMOUNT
 		if required_resources > player_ship.resources_held:
 			print("level failed")
+			_level_complete()
 
 
 func _on_Spaceship_update_resources(value) -> void:
