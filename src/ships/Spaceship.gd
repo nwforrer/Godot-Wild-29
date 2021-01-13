@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
-export(int) var num_miners = 0
+export(int) var num_miners = 0 setget set_num_miners
+
+signal update_miner_count(value)
 
 onready var movement_controller = $MovementController
 onready var gathering_particles = $GatheringParticles
@@ -36,10 +38,10 @@ func _physics_process(_delta: float) -> void:
 		miner_detector.global_rotation = raycast_dir.angle()
 		if miner_detector.is_colliding():
 			var colliding_miner = miner_detector.get_collider() as Miner
-			if colliding_miner:
+			if colliding_miner and colliding_miner.job_complete and colliding_miner.owning_ship == self:
 				self.resources_held += colliding_miner.resources_held
 				colliding_miner.queue_free()
-				num_miners += 1
+				self.num_miners += 1
 
 
 func _draw() -> void:
@@ -77,9 +79,14 @@ func _launch_miner():
 		var miner = Miner.instance()
 		get_tree().current_scene.add_child(miner)
 		miner.global_position = global_position
-		miner.launch(planet_target)
-		num_miners -= 1
+		miner.launch(self, planet_target)
+		self.num_miners -= 1
 
 
 func set_resources_held(value: int) -> void:
 	resources_held = value
+
+
+func set_num_miners(value: int) -> void:
+	num_miners = value
+	emit_signal("update_miner_count", value)

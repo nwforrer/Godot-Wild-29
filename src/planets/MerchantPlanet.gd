@@ -7,6 +7,7 @@ export(String) var MERCHANT_DIALOG
 export(int) var RESOURCE_REQUEST_AMOUNT
 
 onready var quest_marker = $QuestMarker
+onready var offscreen_marker = $OffscreenMarker
 
 var can_buy: bool = true
 
@@ -26,3 +27,4 @@ func sell_resources() -> void:
 	can_buy = false
 	emit_signal("resources_bought", self)
 	quest_marker.hide()
+	offscreen_marker.disabled = true

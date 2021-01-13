@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/miner.png" type="Texture" id=1]
 [ext_resource path="res://src/ships/MovementController.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/ships/Miner.gd" type="Script" id=3]
 [ext_resource path="res://src/ships/GatheringComponent.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/quest_marker.png" type="Texture" id=5]
+[ext_resource path="res://src/world/OffscreenMarker.tscn" type="PackedScene" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.58646
@@ -40,10 +41,19 @@ shape = SubResource( 2 )
 
 [node name="GatheringComponent" parent="." instance=ExtResource( 4 )]
 CONTROLLING_NODE = NodePath("..")
+GATHER_SPEED = 2.0
 
 [node name="ResourcesFullIndicator" type="Sprite" parent="."]
 visible = false
 position = Vector2( -0.222725, -13.8089 )
 scale = Vector2( 0.448264, 0.448264 )
 texture = ExtResource( 5 )
+
+[node name="OffscreenMarker" parent="." instance=ExtResource( 6 )]
+visible = false
+
+[node name="Icon" parent="OffscreenMarker/Marker" index="1"]
+texture = ExtResource( 1 )
 [connection signal="body_entered" from="PlanetDetection" to="." method="_on_PlanetDetection_body_entered"]
+
+[editable path="OffscreenMarker"]

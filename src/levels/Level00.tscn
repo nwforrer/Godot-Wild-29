@@ -7,7 +7,7 @@
 [node name="Level00" instance=ExtResource( 3 )]
 
 [node name="MerchantPlanet" parent="Planets" index="0" instance=ExtResource( 1 )]
-position = Vector2( -123.488, 58.4582 )
+position = Vector2( -60.417, 54.7873 )
 RESOURCE_REQUEST_AMOUNT = 5
 
 [node name="ResourcePlanet" parent="Planets" index="1" instance=ExtResource( 2 )]

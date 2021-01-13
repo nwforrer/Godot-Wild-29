@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/levels/Level01.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/world/World.gd" type="Script" id=2]
 [ext_resource path="res://src/ships/PlayerShip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/world/Camera2D.gd" type="Script" id=4]
 [ext_resource path="res://src/ui/ResourceUI.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/ui/ResourceUI.gd" type="Script" id=6]
 [ext_resource path="res://src/ui/NextLevelScreen.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/ui/QuestDialog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/ui/SellDialog.tscn" type="PackedScene" id=9]
@@ -27,7 +26,6 @@ script = ExtResource( 4 )
 [node name="GUI" type="CanvasLayer" parent="."]
 
 [node name="ResourceUI" parent="GUI" instance=ExtResource( 5 )]
-script = ExtResource( 6 )
 
 [node name="QuestDialog" parent="GUI" instance=ExtResource( 8 )]
 visible = false
@@ -40,6 +38,7 @@ visible = false
 [connection signal="remove_dialog" from="Spaceship" to="." method="_on_Spaceship_remove_dialog"]
 [connection signal="show_dialog" from="Spaceship" to="." method="_on_Spaceship_show_dialog"]
 [connection signal="show_sell_dialog" from="Spaceship" to="." method="_on_Spaceship_show_sell_dialog"]
+[connection signal="update_miner_count" from="Spaceship" to="." method="_on_Spaceship_update_miner_count"]
 [connection signal="update_resources" from="Spaceship" to="." method="_on_Spaceship_update_resources"]
 [connection signal="camera_zoom_updated" from="Camera2D" to="." method="_on_Camera2D_camera_zoom_updated"]
 [connection signal="resources_sold" from="GUI/SellDialog" to="." method="_on_SellDialog_resources_sold"]

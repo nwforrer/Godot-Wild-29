@@ -20,6 +20,8 @@ func _ready() -> void:
 	VisualServer.set_default_clear_color(Color("272744"))
 	
 	_load_level(current_level_index)
+	
+	resource_ui.update_num_miners(player_ship.num_miners)
 
 
 func _load_level(index: int) -> void:
@@ -127,3 +129,7 @@ func _on_NextLevelButton_pressed() -> void:
 	current_level_index += 1
 	if current_level_index < Levels.size():
 		_load_level(current_level_index)
+
+
+func _on_Spaceship_update_miner_count(value) -> void:
+	resource_ui.update_num_miners(value)
