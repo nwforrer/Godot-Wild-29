@@ -6,6 +6,7 @@ onready var camera = $Camera2D
 onready var resource_ui = $GUI/ResourceUI
 onready var quest_dialog_ui = $GUI/QuestDialog
 onready var sell_dialog_ui = $GUI/SellDialog
+onready var shop_ui = $GUI/ShopUI
 onready var next_level_ui = $GUI/NextLevelScreen
 onready var player_ship = $Spaceship
 
@@ -21,6 +22,7 @@ func _ready() -> void:
 	
 	_load_level(current_level_index)
 	
+	resource_ui.show_miners_container(player_ship.miners_unlocked)
 	resource_ui.update_num_miners(player_ship.num_miners)
 
 
@@ -112,15 +114,18 @@ func _on_Spaceship_show_dialog(text) -> void:
 func _on_Spaceship_remove_dialog() -> void:
 	quest_dialog_ui.hide()
 	sell_dialog_ui.hide()
+	shop_ui.hide()
 
 
 func _on_SellDialog_resources_sold() -> void:
 	sell_dialog_ui.hide()
+	shop_ui.hide()
 	player_ship.sell_resources()
 
 
 func _on_Spaceship_show_sell_dialog(amount) -> void:
 	sell_dialog_ui.display_sell_dialog(amount)
+	shop_ui.open(player_ship.credits_held)
 
 
 func _on_NextLevelButton_pressed() -> void:
@@ -133,3 +138,18 @@ func _on_NextLevelButton_pressed() -> void:
 
 func _on_Spaceship_update_miner_count(value) -> void:
 	resource_ui.update_num_miners(value)
+
+
+func _on_ShopUI_purchase_miner(cost: int) -> void:
+	if player_ship.credits_held >= cost:
+		shop_ui.hide()
+		player_ship.credits_held -= cost
+		player_ship.set_miners_unlocked(true)
+
+
+func _on_Spaceship_miners_unlocked() -> void:
+	resource_ui.show_miners_container(true)
+
+
+func _on_Spaceship_update_credits(value) -> void:
+	resource_ui.update_credits(value)

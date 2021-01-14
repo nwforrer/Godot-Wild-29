@@ -1,8 +1,10 @@
 extends KinematicBody2D
 
 export(int) var num_miners = 0 setget set_num_miners
+export(bool) var miners_unlocked = false setget set_miners_unlocked
 
 signal update_miner_count(value)
+signal miners_unlocked
 
 onready var movement_controller = $MovementController
 onready var gathering_particles = $GatheringParticles
@@ -90,3 +92,9 @@ func set_resources_held(value: int) -> void:
 func set_num_miners(value: int) -> void:
 	num_miners = value
 	emit_signal("update_miner_count", value)
+
+
+func set_miners_unlocked(value: bool) -> void:
+	if value:
+		self.num_miners += 1
+		emit_signal("miners_unlocked")

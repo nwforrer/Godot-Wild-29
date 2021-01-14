@@ -6,7 +6,6 @@
 
 [node name="PlayerShip" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
-num_miners = 1
 
 [node name="PlayerController" parent="." index="5" instance=ExtResource( 1 )]
 

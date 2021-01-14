@@ -4,8 +4,11 @@ signal resources_sold
 
 onready var sell_label = $HBoxContainer/SellLabel
 
+var resources_amount: int = 0
+
 
 func display_sell_dialog(amount: int) -> void:
+	resources_amount = amount
 	sell_label.text = "Sell " + str(amount) + " resources?"
 	show()
 

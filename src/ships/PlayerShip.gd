@@ -1,10 +1,12 @@
 extends "res://src/ships/Spaceship.gd"
 
 signal update_resources(value)
+signal update_credits(value)
 signal show_dialog(text)
 signal remove_dialog()
 signal show_sell_dialog(amount)
 
+var credits_held: int = 0 setget set_credits_held
 
 func _process(_delta: float) -> void:
 	if planet_target and not movement_controller.is_accelerating():
@@ -18,6 +20,7 @@ func sell_resources() -> void:
 		resources_held -= planet_target.get_requested_amount()
 		planet_target.sell_resources()
 		emit_signal("update_resources", resources_held)
+		self.credits_held += planet_target.get_requested_amount()
 
 
 func _draw() -> void:
@@ -42,6 +45,11 @@ func set_planet_target(planet: Planet) -> void:
 func set_resources_held(value: int) -> void:
 	.set_resources_held(value)
 	emit_signal("update_resources", resources_held)
+
+
+func set_credits_held(value: int) -> void:
+	credits_held = value
+	emit_signal("update_credits", value)
 
 
 func camera_zoom_updated(zoom_amount) -> void:

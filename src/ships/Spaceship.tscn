@@ -5,7 +5,7 @@
 [ext_resource path="res://src/ships/GatheringComponent.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ships/Spaceship.gd" type="Script" id=4]
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
 emission_sphere_radius = 1.0
 flag_disable_z = true
@@ -15,10 +15,10 @@ orbit_velocity_random = 0.0
 scale = 2.0
 color = Color( 0.94902, 0.827451, 0.670588, 1 )
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=2]
 radius = 5.13028
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 31.5274
 
 [node name="Spaceship" type="KinematicBody2D"]
@@ -30,7 +30,7 @@ emitting = false
 amount = 10
 lifetime = 1.75
 preprocess = 1.0
-process_material = SubResource( 3 )
+process_material = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.23597, -4.12945 )
@@ -39,7 +39,7 @@ texture = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0.0589905, 1.90735e-06 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="MovementController" parent="." instance=ExtResource( 2 )]
 FAR_MAX_SPEED = 200.0
@@ -49,7 +49,7 @@ visible = false
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="GatheringComponent" parent="." instance=ExtResource( 3 )]
 CONTROLLING_NODE = NodePath("..")

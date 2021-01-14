@@ -5,7 +5,7 @@ onready var marker = $Marker
 var disabled: bool = false
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if disabled:
 		hide()
 		return
