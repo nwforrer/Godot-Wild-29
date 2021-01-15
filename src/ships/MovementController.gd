@@ -33,6 +33,11 @@ func is_accelerating() -> bool:
 	return movement_dir.length() > 0
 
 
+func stop_movement_immediately() -> void:
+	velocity = Vector2.ZERO
+	movement_dir = Vector2.ZERO
+
+
 func stop_movement() -> void:
 	if not _decelerating:
 		_decelerating = true

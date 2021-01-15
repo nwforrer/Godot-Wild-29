@@ -43,6 +43,7 @@ visible = false
 [connection signal="remove_dialog" from="Spaceship" to="." method="_on_Spaceship_remove_dialog"]
 [connection signal="show_dialog" from="Spaceship" to="." method="_on_Spaceship_show_dialog"]
 [connection signal="show_sell_dialog" from="Spaceship" to="." method="_on_Spaceship_show_sell_dialog"]
+[connection signal="show_shop" from="Spaceship" to="." method="_on_Spaceship_show_shop"]
 [connection signal="update_credits" from="Spaceship" to="." method="_on_Spaceship_update_credits"]
 [connection signal="update_miner_count" from="Spaceship" to="." method="_on_Spaceship_update_miner_count"]
 [connection signal="update_resources" from="Spaceship" to="." method="_on_Spaceship_update_resources"]

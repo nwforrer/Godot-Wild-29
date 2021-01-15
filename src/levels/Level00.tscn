@@ -1,14 +1,42 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/planets/MerchantPlanet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/planets/ResourcePlanet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/levels/Level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/planets/ShopPlanet.tscn" type="PackedScene" id=4]
 
 [node name="Level00" instance=ExtResource( 3 )]
 
 [node name="MerchantPlanet" parent="Planets" index="0" instance=ExtResource( 1 )]
 position = Vector2( -60.417, 54.7873 )
+unlocks_planets = [ NodePath("../MerchantPlanet2"), NodePath("../MerchantPlanet3"), NodePath("../ShopPlanet") ]
 RESOURCE_REQUEST_AMOUNT = 5
 
-[node name="ResourcePlanet" parent="Planets" index="1" instance=ExtResource( 2 )]
+[node name="MerchantPlanet2" parent="Planets" index="1" instance=ExtResource( 1 )]
+position = Vector2( -37.452, -567.653 )
+unlocked = false
+RESOURCE_REQUEST_AMOUNT = 5
+
+[node name="MerchantPlanet3" parent="Planets" index="2" instance=ExtResource( 1 )]
+position = Vector2( 354.658, -567.987 )
+unlocked = false
+RESOURCE_REQUEST_AMOUNT = 5
+
+[node name="ResourcePlanet" parent="Planets" index="3" instance=ExtResource( 2 )]
 position = Vector2( 72.7592, 53.5513 )
+
+[node name="ResourcePlanet2" parent="Planets" index="4" instance=ExtResource( 2 )]
+position = Vector2( -231.241, -644.449 )
+
+[node name="ResourcePlanet3" parent="Planets" index="5" instance=ExtResource( 2 )]
+position = Vector2( -389.241, -564.449 )
+
+[node name="ResourcePlanet4" parent="Planets" index="6" instance=ExtResource( 2 )]
+position = Vector2( 676.759, -456.449 )
+
+[node name="ResourcePlanet5" parent="Planets" index="7" instance=ExtResource( 2 )]
+position = Vector2( 752.759, -654.449 )
+
+[node name="ShopPlanet" parent="Planets" index="8" instance=ExtResource( 4 )]
+position = Vector2( 1028, -494 )
+unlocked = false

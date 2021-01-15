@@ -5,6 +5,7 @@ signal update_credits(value)
 signal show_dialog(text)
 signal remove_dialog()
 signal show_sell_dialog(amount)
+signal show_shop(num_credits)
 
 var credits_held: int = 0 setget set_credits_held
 
@@ -30,14 +31,17 @@ func _draw() -> void:
 
 func set_planet_target(planet: Planet) -> void:
 	if planet:
-		if planet.PLANET_TYPE == Planet.PlanetType.MERCHANT:
-			if planet.can_buy and resources_held >= planet.get_requested_amount():
-				emit_signal("show_sell_dialog", planet.get_requested_amount())
-			else:
-				emit_signal("show_dialog", planet.get_dialog())
+		match planet.PLANET_TYPE:
+			Planet.PlanetType.MERCHANT:
+				if planet.can_buy and resources_held >= planet.get_requested_amount():
+					emit_signal("show_sell_dialog", planet.get_requested_amount())
+				else:
+					emit_signal("show_dialog", planet.get_dialog())
+			
+			Planet.PlanetType.SHOP:
+				emit_signal("show_shop", credits_held)
 	else:
-		if planet_target.PLANET_TYPE == Planet.PlanetType.MERCHANT:
-			emit_signal("remove_dialog")
+		emit_signal("remove_dialog")
 	
 	.set_planet_target(planet)
 

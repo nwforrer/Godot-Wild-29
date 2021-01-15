@@ -45,6 +45,7 @@ func _load_level(index: int) -> void:
 	remaining_merchant_planets.clear()
 	remaining_resource_planets.clear()
 	
+	player_ship.stop_moving_immediately()
 	player_ship.global_position = Vector2.ZERO
 	
 	for miner in get_tree().get_nodes_in_group("miner"):
@@ -70,7 +71,7 @@ func _level_complete() -> void:
 		# warning-ignore:return_value_discarded
 		get_tree().change_scene("res://src/ui/GameOverScreen.tscn")
 	next_level_ui.show()
-	get_tree().paused = true
+	#get_tree().paused = true
 
 
 func _planet_entered_screen(planet):
@@ -95,7 +96,7 @@ func _planet_resources_exhausted(planet):
 			required_resources += merchant_planet.RESOURCE_REQUEST_AMOUNT
 		if required_resources > player_ship.resources_held:
 			print("level failed")
-			_level_complete()
+			#_level_complete()
 
 
 func _on_Spaceship_update_resources(value) -> void:
@@ -119,13 +120,11 @@ func _on_Spaceship_remove_dialog() -> void:
 
 func _on_SellDialog_resources_sold() -> void:
 	sell_dialog_ui.hide()
-	shop_ui.hide()
 	player_ship.sell_resources()
 
 
 func _on_Spaceship_show_sell_dialog(amount) -> void:
 	sell_dialog_ui.display_sell_dialog(amount)
-	shop_ui.open(player_ship.credits_held)
 
 
 func _on_NextLevelButton_pressed() -> void:
@@ -142,7 +141,6 @@ func _on_Spaceship_update_miner_count(value) -> void:
 
 func _on_ShopUI_purchase_miner(cost: int) -> void:
 	if player_ship.credits_held >= cost:
-		shop_ui.hide()
 		player_ship.credits_held -= cost
 		player_ship.set_miners_unlocked(true)
 
@@ -153,3 +151,7 @@ func _on_Spaceship_miners_unlocked() -> void:
 
 func _on_Spaceship_update_credits(value) -> void:
 	resource_ui.update_credits(value)
+
+
+func _on_Spaceship_show_shop(num_credits) -> void:
+	shop_ui.open(num_credits)

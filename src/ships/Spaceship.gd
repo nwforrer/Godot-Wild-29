@@ -51,6 +51,10 @@ func _draw() -> void:
 		draw_line(global_position - global_position, planet_target.global_position - global_position, Color("fbf5ef"), 5.0)
 
 
+func stop_moving_immediately() -> void:
+	movement_controller.stop_movement_immediately()
+
+
 func set_planet_target(planet: Planet) -> void:
 	planet_target = planet
 	gathering_component.planet_target = planet

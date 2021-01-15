@@ -22,7 +22,7 @@ func _process(_delta: float) -> void:
 func set_marker_position(bounds: Rect2) -> void:
 	var canvas_scale = get_canvas_transform().get_scale()
 	var x_offset = 5 / canvas_scale.x
-	var y_offset = 5 / canvas_scale.y
+	var y_offset = 5 / canvas_scale.y + 15
 	marker.global_position.x = clamp(global_position.x, bounds.position.x + x_offset, bounds.end.x - x_offset)
 	marker.global_position.y = clamp(global_position.y, bounds.position.y + y_offset, bounds.end.y - y_offset)
 	
