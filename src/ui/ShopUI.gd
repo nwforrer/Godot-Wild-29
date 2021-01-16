@@ -53,10 +53,12 @@ func generate_item_list() -> void:
 
 
 func _on_CloseButton_pressed() -> void:
+	SoundEffects.select_sound.play()
 	hide()
 
 
 func _on_BuyItemButton_pressed(button: Button, bought_item: ShopItem) -> void:
+	SoundEffects.select_sound.play()
 	available_coin -= bought_item.item_cost
 	if available_coin < bought_item.item_cost:
 		button.disabled = true

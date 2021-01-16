@@ -8,6 +8,7 @@ signal update_miner_count(value)
 onready var movement_controller = $MovementController
 onready var gathering_component = $GatheringComponent
 onready var miner_detector = $MinerDetector
+onready var engine_sound = $EngineSound
 
 var Miner = preload("res://src/ships/Miner.tscn")
 
@@ -18,6 +19,11 @@ var planet_target: Planet = null setget set_planet_target
 func _process(_delta: float) -> void:
 	if planet_target and not movement_controller.is_accelerating():
 		movement_controller.stop_movement()
+	
+	if movement_controller.is_accelerating() and not engine_sound.playing:
+		engine_sound.play()
+	elif not movement_controller.is_accelerating() and engine_sound.playing:
+		engine_sound.stop()
 
 
 func _physics_process(_delta: float) -> void:

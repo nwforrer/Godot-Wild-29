@@ -4,9 +4,11 @@ export(NodePath) var CONTROLLING_NODE
 onready var controlling_node: Node = get_node(CONTROLLING_NODE)
 
 onready var gathering_particles = $GatheringParticles
+onready var extracting_sound = $ExtractingSound
 
 export(float) var GATHER_SPEED = 1.0
 export(bool) var visible_particles = true
+export(bool) var enable_gathering_sound = true
 
 onready var timer = $Timer
 
@@ -37,6 +39,8 @@ func _process(_delta: float) -> void:
 	else:
 		gathering_particles.emitting = false
 		gathering_particles.hide()
+		if extracting_sound.playing:
+			extracting_sound.stop()
 	
 	update()
 
@@ -50,20 +54,24 @@ func _draw() -> void:
 
 func disable_gathering() -> void:
 	timer.stop()
+	if extracting_sound.playing:
+		extracting_sound.stop()
 
 
 func enable_gathering() -> void:
 	timer.start()
+	if not extracting_sound.playing and enable_gathering_sound:
+		extracting_sound.play()
 
 
 func set_planet_target(planet: Planet) -> void:
 	if ship_target:
 		return
 	planet_target = planet
-	if planet:
-		timer.start()
+	if planet and planet.PLANET_TYPE == Planet.PlanetType.RESOURCE and planet_target.can_regenerate:
+		enable_gathering()
 	else:
-		timer.stop()
+		disable_gathering()
 
 
 func set_ship_target(ship) -> void:
@@ -71,9 +79,9 @@ func set_ship_target(ship) -> void:
 	if ship:
 		if planet_target:
 			planet_target = null
-		timer.start()
+		enable_gathering()
 	else:
-		timer.stop()
+		disable_gathering()
 
 
 func _on_Timer_timeout() -> void:

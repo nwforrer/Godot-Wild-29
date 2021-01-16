@@ -29,8 +29,10 @@ func get_requirement_dialog() -> String:
 func show_notification(show: bool) -> void:
 	if show and unlocked:
 		quest_marker.show()
+		offscreen_marker.disabled = false
 	else:
 		quest_marker.hide()
+		offscreen_marker.disabled = true
 
 
 func unlock() -> void:

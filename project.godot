@@ -45,6 +45,7 @@ config/icon="res://icon.png"
 [autoload]
 
 WorldEvents="*res://src/world/WorldEvents.gd"
+SoundEffects="*res://src/sounds/SoundEffects.tscn"
 
 [display]
 

@@ -30,6 +30,9 @@ func _ready() -> void:
 	
 	resource_ui.show_miners_container(player_ship.miners_unlocked)
 	resource_ui.update_num_miners(player_ship.num_miners)
+	
+	#var master_bus_idx = AudioServer.get_bus_index("Master")
+	#AudioServer.set_bus_volume_db(master_bus_idx, -30)
 
 
 func _load_level(index: int) -> void:

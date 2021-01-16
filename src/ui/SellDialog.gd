@@ -14,4 +14,5 @@ func display_sell_dialog(amount: int) -> void:
 
 
 func _on_SellButton_pressed() -> void:
+	SoundEffects.select_sound.play()
 	emit_signal("resources_sold")

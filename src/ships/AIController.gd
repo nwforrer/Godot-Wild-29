@@ -10,7 +10,6 @@ onready var movement_controller: MovementController = get_node(MovementControlle
 export(NodePath) var GatheringComponent
 onready var gathering_component = get_node(GatheringComponent)
 
-onready var acceleration_timer = $AccelerationTimer
 onready var chase_timer = $ChaseTimer
 
 var ai_state = AiState.EXTRACT_RESOURCES
@@ -19,12 +18,16 @@ var player_ship = null
 
 var resource_planets: Array
 var destination: Planet
+var at_destination: bool = false
 
 
 func _process(_delta: float) -> void:
 	match ai_state:
 		AiState.CHASE_PLAYER:
 			movement_controller.movement_dir = (player_ship.global_position - get_parent().global_position).normalized()
+		AiState.EXTRACT_RESOURCES:
+			if destination and not at_destination:
+				movement_controller.movement_dir = (destination.global_position - get_parent().global_position).normalized()
 
 
 func add_resource_planet(planet) -> void:
@@ -40,8 +43,8 @@ func choose_desination() -> void:
 	if resource_planets.size() > 0:
 		resource_planets.shuffle()
 		destination = resource_planets[0]
+		at_destination = false
 		movement_controller.movement_dir = (destination.global_position - get_parent().global_position).normalized()
-		acceleration_timer.start()
 
 
 func chase_player(player) -> void:
@@ -50,14 +53,16 @@ func chase_player(player) -> void:
 	chase_timer.start()
 
 
+func handle_planet_interaction(body: Planet) -> void:
+	if body == destination:
+		movement_controller.movement_dir = Vector2.ZERO
+		at_destination = true
+
+
 func _on_destination_resources_exhausted(planet) -> void:
 	resource_planets.erase(planet)
 	if planet == destination:
 		choose_desination()
-
-
-func _on_AccelerationTimer_timeout() -> void:
-	movement_controller.movement_dir = Vector2.ZERO
 
 
 func _on_PirateBoardingArea_body_entered(body: Node) -> void:
@@ -65,11 +70,12 @@ func _on_PirateBoardingArea_body_entered(body: Node) -> void:
 		gathering_component.ship_target = body
 
 
-func _on_PirateBoardingArea_body_exited(body: Node) -> void:
+func _on_PirateBoardingArea_body_exited(_body: Node) -> void:
 	if ai_state == AiState.CHASE_PLAYER:
 		gathering_component.ship_target = null
 
 
 func _on_ChaseTimer_timeout() -> void:
 	ai_state = AiState.EXTRACT_RESOURCES
+	gathering_component.ship_target = null
 	choose_desination()

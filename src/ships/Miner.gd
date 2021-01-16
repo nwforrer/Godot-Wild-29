@@ -8,6 +8,7 @@ onready var gathering_component = $GatheringComponent
 onready var resources_full = $ResourcesFullIndicator
 onready var collider = $CollisionShape2D
 onready var offscreen_marker = $OffscreenMarker
+onready var mining_sound = $MiningSound
 
 var planet_target: Planet = null
 var resources_held: int = 0 setget set_resources_held
@@ -59,3 +60,5 @@ func set_resources_held(value: int) -> void:
 	resources_held = value
 	if resources_held >= MAX_RESOURCES:
 		self.job_complete = true
+	else:
+		mining_sound.play()

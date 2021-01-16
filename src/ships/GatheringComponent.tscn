@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/ships/GatheringComponent.gd" type="Script" id=1]
+[ext_resource path="res://src/ships/extraction_sound_stream.tres" type="AudioStream" id=2]
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
@@ -23,4 +24,9 @@ amount = 10
 lifetime = 1.6
 preprocess = 1.0
 process_material = SubResource( 1 )
+
+[node name="ExtractingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -20.0
+attenuation = 3.13834
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

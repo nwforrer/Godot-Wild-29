@@ -6,11 +6,7 @@
 script = ExtResource( 1 )
 MovementController = NodePath("../MovementController")
 
-[node name="AccelerationTimer" type="Timer" parent="."]
-one_shot = true
-
 [node name="ChaseTimer" type="Timer" parent="."]
 wait_time = 20.0
 one_shot = true
-[connection signal="timeout" from="AccelerationTimer" to="." method="_on_AccelerationTimer_timeout"]
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_ChaseTimer_timeout"]
