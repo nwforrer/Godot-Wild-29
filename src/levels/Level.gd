@@ -9,4 +9,4 @@ func _ready() -> void:
 		for planet in planets.get_children():
 			if planet.PLANET_TYPE == Planet.PlanetType.RESOURCE:
 				enemy.get_node("AIController").add_resource_planet(planet)
-		enemy.get_node("AIController").start_ai()
+		enemy.start_ai()

@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "Planet",
 "language": "GDScript",
 "path": "res://src/planets/Planet.gd"
+}, {
+"base": "Resource",
+"class": "ShopItem",
+"language": "GDScript",
+"path": "res://src/ui/shop_items/ShopItem.gd"
 } ]
 _global_script_class_icons={
 "Miner": "",
 "MovementController": "",
-"Planet": ""
+"Planet": "",
+"ShopItem": ""
 }
 
 [application]
@@ -35,6 +41,10 @@ _global_script_class_icons={
 config/name="Godot Wild 29"
 run/main_scene="res://src/ui/MainMenu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+WorldEvents="res://src/world/WorldEvents.gd"
 
 [display]
 

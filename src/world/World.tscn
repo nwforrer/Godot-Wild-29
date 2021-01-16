@@ -39,7 +39,6 @@ visible = false
 
 [node name="NextLevelScreen" parent="GUI" instance=ExtResource( 7 )]
 visible = false
-[connection signal="miners_unlocked" from="Spaceship" to="." method="_on_Spaceship_miners_unlocked"]
 [connection signal="remove_dialog" from="Spaceship" to="." method="_on_Spaceship_remove_dialog"]
 [connection signal="show_dialog" from="Spaceship" to="." method="_on_Spaceship_show_dialog"]
 [connection signal="show_sell_dialog" from="Spaceship" to="." method="_on_Spaceship_show_sell_dialog"]
@@ -48,7 +47,7 @@ visible = false
 [connection signal="update_miner_count" from="Spaceship" to="." method="_on_Spaceship_update_miner_count"]
 [connection signal="update_resources" from="Spaceship" to="." method="_on_Spaceship_update_resources"]
 [connection signal="camera_zoom_updated" from="Camera2D" to="." method="_on_Camera2D_camera_zoom_updated"]
-[connection signal="purchase_miner" from="GUI/ShopUI" to="." method="_on_ShopUI_purchase_miner"]
+[connection signal="item_purchased" from="GUI/ShopUI" to="." method="_on_ShopUI_item_purchased"]
 [connection signal="resources_sold" from="GUI/SellDialog" to="." method="_on_SellDialog_resources_sold"]
 [connection signal="pressed" from="GUI/NextLevelScreen/CenterContainer/HBoxContainer/NextLevelButton" to="." method="_on_NextLevelButton_pressed"]
 

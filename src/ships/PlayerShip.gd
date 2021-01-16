@@ -5,7 +5,7 @@ signal update_credits(value)
 signal show_dialog(text)
 signal remove_dialog()
 signal show_sell_dialog(amount)
-signal show_shop(num_credits)
+signal show_shop(num_credits, shop_planet)
 
 var credits_held: int = 0 setget set_credits_held
 
@@ -39,7 +39,7 @@ func set_planet_target(planet: Planet) -> void:
 					emit_signal("show_dialog", planet.get_dialog())
 			
 			Planet.PlanetType.SHOP:
-				emit_signal("show_shop", credits_held)
+				emit_signal("show_shop", credits_held, planet)
 	else:
 		emit_signal("remove_dialog")
 	

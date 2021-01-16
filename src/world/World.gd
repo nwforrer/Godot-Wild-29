@@ -3,6 +3,7 @@ extends Node2D
 export(Array, PackedScene) var Levels
 
 onready var camera = $Camera2D
+onready var gui = $GUI
 onready var resource_ui = $GUI/ResourceUI
 onready var quest_dialog_ui = $GUI/QuestDialog
 onready var sell_dialog_ui = $GUI/SellDialog
@@ -139,19 +140,25 @@ func _on_Spaceship_update_miner_count(value) -> void:
 	resource_ui.update_num_miners(value)
 
 
-func _on_ShopUI_purchase_miner(cost: int) -> void:
-	if player_ship.credits_held >= cost:
-		player_ship.credits_held -= cost
-		player_ship.set_miners_unlocked(true)
-
-
-func _on_Spaceship_miners_unlocked() -> void:
-	resource_ui.show_miners_container(true)
-
-
 func _on_Spaceship_update_credits(value) -> void:
 	resource_ui.update_credits(value)
 
 
-func _on_Spaceship_show_shop(num_credits) -> void:
-	shop_ui.open(num_credits)
+func _on_Spaceship_show_shop(num_credits, shop_planet) -> void:
+	shop_ui.open(num_credits, shop_planet.shop_items)
+
+
+func _on_ShopUI_item_purchased(item: ShopItem) -> void:
+	if player_ship.credits_held >= item.item_cost:
+		player_ship.credits_held -= item.item_cost
+		if item.item_type == ShopItem.ItemType.MINER:
+			player_ship.num_miners += 1
+			if not player_ship.miners_unlocked:
+				player_ship.miners_unlocked = true
+				resource_ui.show_miners_container(true)
+				if item.tutorial_scene_path:
+					print(item.tutorial_scene_path)
+					var tutorial_ui = item.tutorial_scene_path.instance()
+					gui.add_child(tutorial_ui)
+					get_tree().paused = true
+

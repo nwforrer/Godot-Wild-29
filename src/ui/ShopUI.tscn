@@ -35,34 +35,35 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/VBoxContainer"]
-margin_right = 326.0
+margin_right = 320.0
 margin_bottom = 31.0
 
-[node name="BuyMinerButton" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer"]
-margin_right = 24.0
+[node name="BuyItemButton" type="Button" parent="ColorRect/VBoxContainer/HBoxContainer"]
+margin_right = 35.0
 margin_bottom = 31.0
+rect_min_size = Vector2( 35, 0 )
 text = "Buy"
 
-[node name="MinerCostLabel" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
-margin_left = 28.0
+[node name="ItemCostLabel" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
+margin_left = 39.0
 margin_top = 6.0
-margin_right = 52.0
+margin_right = 63.0
 margin_bottom = 24.0
 text = "10"
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect/VBoxContainer/HBoxContainer"]
-margin_left = 56.0
+[node name="ItemIcon" type="TextureRect" parent="ColorRect/VBoxContainer/HBoxContainer"]
+margin_left = 67.0
 margin_top = 7.0
-margin_right = 72.0
+margin_right = 83.0
 margin_bottom = 23.0
 size_flags_vertical = 4
 texture = ExtResource( 1 )
 
-[node name="Label" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
-margin_left = 76.0
-margin_right = 326.0
+[node name="ItemDescriptionLabel" type="Label" parent="ColorRect/VBoxContainer/HBoxContainer"]
+margin_left = 87.0
+margin_right = 302.0
 margin_bottom = 31.0
-rect_min_size = Vector2( 250, 0 )
+rect_min_size = Vector2( 215, 0 )
 text = "Launch miners onto planets to gather resources"
 autowrap = true
 
@@ -75,5 +76,5 @@ text = "X"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/BuyMinerButton" to="." method="_on_BuyMinerButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/HBoxContainer/BuyItemButton" to="." method="_on_BuyItemButton_pressed"]
 [connection signal="pressed" from="ColorRect/CloseButton" to="." method="_on_CloseButton_pressed"]

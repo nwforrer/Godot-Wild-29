@@ -14,7 +14,7 @@ export(PlanetType) var PLANET_TYPE = PlanetType.RESOURCE
 
 export(bool) var unlocked = true
 
-export(Array, NodePath) var unlocks_planets
+export(Array, NodePath) var unlocks_objects
 
 
 func _on_VisibilityNotifier2D_screen_entered() -> void:
@@ -30,6 +30,10 @@ func unlock() -> void:
 
 
 func trigger_unlocks() -> void:
-	if unlocks_planets.size() > 0:
-		for planet in unlocks_planets:
-			get_node(planet).unlock()
+	if unlocks_objects.size() > 0:
+		for object in unlocks_objects:
+			var o = get_node(object)
+			if o.has_method("unlock"):
+				o.unlock()
+			else:
+				print(str(o) + " is missing unlock method.")
