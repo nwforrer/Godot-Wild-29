@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/ui/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/ui/IntroDialog.gd" type="Script" id=2]
+
+[node name="IntroDialog" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackgroundColor" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.152941, 0.152941, 0.266667, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -137.0
+text = "This is the intro text to the game. You need to collect some amount of money so something bad doesn't happen to you. Good luck."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TypingTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.158142
+margin_top = -17.8062
+margin_right = 0.158142
+margin_bottom = -2.80618
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="CenterContainer"]
+margin_left = 135.0
+margin_right = 185.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 50, 15 )
+text = "Begin"
+[connection signal="timeout" from="TypingTimer" to="." method="_on_TypingTimer_timeout"]
+[connection signal="pressed" from="CenterContainer/Button" to="." method="_on_Button_pressed"]

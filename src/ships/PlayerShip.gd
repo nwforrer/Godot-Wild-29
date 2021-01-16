@@ -1,7 +1,7 @@
 extends "res://src/ships/Spaceship.gd"
 
 signal update_resources(value)
-signal update_credits(value)
+signal update_credits(old_value, value)
 signal show_dialog(text)
 signal remove_dialog()
 signal show_sell_dialog(amount)
@@ -52,8 +52,8 @@ func set_resources_held(value: int) -> void:
 
 
 func set_credits_held(value: int) -> void:
+	emit_signal("update_credits", credits_held, value)
 	credits_held = value
-	emit_signal("update_credits", value)
 
 
 func camera_zoom_updated(zoom_amount) -> void:
@@ -65,3 +65,8 @@ func camera_zoom_updated(zoom_amount) -> void:
 
 func _on_PlayerController_launch_miner() -> void:
 	_launch_miner()
+
+
+func consume_credit() -> void:
+	if credits_held > 0:
+		self.credits_held -= 1

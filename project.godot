@@ -44,7 +44,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-WorldEvents="res://src/world/WorldEvents.gd"
+WorldEvents="*res://src/world/WorldEvents.gd"
 
 [display]
 
@@ -116,6 +116,7 @@ launch_miner={
 2d_physics/layer_2="Ship"
 2d_physics/layer_3="Interaction"
 2d_physics/layer_4="Miner"
+2d_physics/layer_5="Player"
 
 [rendering]
 

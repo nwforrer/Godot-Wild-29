@@ -10,3 +10,5 @@ func _ready() -> void:
 			if planet.PLANET_TYPE == Planet.PlanetType.RESOURCE:
 				enemy.get_node("AIController").add_resource_planet(planet)
 		enemy.start_ai()
+		# warning-ignore:return_value_discarded
+		WorldEvents.connect("credits_held_pirate_threshold", enemy, "_on_credits_held_pirate_threshold")

@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/ships/Spaceship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/enemy_spaceship.png" type="Texture" id=2]
 [ext_resource path="res://src/ships/AIController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/ships/EnemyShip.gd" type="Script" id=4]
 
+[sub_resource type="CircleShape2D" id=1]
+radius = 45.7619
+
 [node name="EnemyShip" instance=ExtResource( 1 )]
 script = ExtResource( 4 )
+
+[node name="GatheringComponent" parent="." index="0"]
+GATHER_SPEED = 2.0
 
 [node name="Sprite" parent="." index="1"]
 texture = ExtResource( 2 )
@@ -15,6 +21,13 @@ texture = ExtResource( 2 )
 Target = NodePath("../../EnemyShip")
 
 [node name="AIController" parent="." index="5" instance=ExtResource( 3 )]
+GatheringComponent = NodePath("../GatheringComponent")
 
-[node name="GatheringComponent" parent="." index="6"]
-GATHER_SPEED = 2.0
+[node name="PirateBoardingArea" type="Area2D" parent="." index="7"]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PirateBoardingArea" index="0"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="PirateBoardingArea" to="AIController" method="_on_PirateBoardingArea_body_entered"]
+[connection signal="body_exited" from="PirateBoardingArea" to="AIController" method="_on_PirateBoardingArea_body_exited"]

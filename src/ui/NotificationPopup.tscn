@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/ui/default_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/ui/NotificationPopup.gd" type="Script" id=2]
+
+[node name="NotificationPopup" type="Popup"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NotificationText" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -102.0
+margin_right = 103.0
+margin_bottom = 29.0
+bbcode_enabled = true
+bbcode_text = "[center]Something[/center]"
+text = "Something"
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NotificationTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TypingTimer" type="Timer" parent="."]
+wait_time = 0.1
+[connection signal="timeout" from="NotificationTimer" to="." method="_on_NotificationTimer_timeout"]
+[connection signal="timeout" from="TypingTimer" to="." method="_on_TypingTimer_timeout"]

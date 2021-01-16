@@ -2,6 +2,8 @@ extends Node2D
 
 export(Array, PackedScene) var Levels
 
+export(int) var credits_held_pirate_threshold: int = 10
+
 onready var camera = $Camera2D
 onready var gui = $GUI
 onready var resource_ui = $GUI/ResourceUI
@@ -11,11 +13,14 @@ onready var shop_ui = $GUI/ShopUI
 onready var next_level_ui = $GUI/NextLevelScreen
 onready var player_ship = $Spaceship
 
+var NotificationPopup = preload("res://src/ui/NotificationPopup.tscn")
+
 var current_level_index: int = 0
 var current_level: Node2D
 
 var remaining_merchant_planets: Array
 var remaining_resource_planets: Array
+var remaining_shop_planets: Array
 
 
 func _ready() -> void:
@@ -45,6 +50,7 @@ func _load_level(index: int) -> void:
 	
 	remaining_merchant_planets.clear()
 	remaining_resource_planets.clear()
+	remaining_shop_planets.clear()
 	
 	player_ship.stop_moving_immediately()
 	player_ship.global_position = Vector2.ZERO
@@ -59,12 +65,15 @@ func _load_level(index: int) -> void:
 		planet.connect("planet_entered_screen", self, "_planet_entered_screen")
 		planet.connect("planet_exited_screen", self, "_planet_exited_screen")
 		
-		if planet.PLANET_TYPE == Planet.PlanetType.MERCHANT:
-			planet.connect("resources_bought", self, "_planet_resources_bought")
-			remaining_merchant_planets.append(planet)
-		elif planet.PLANET_TYPE == Planet.PlanetType.RESOURCE:
-			planet.connect("resources_exhausted", self, "_planet_resources_exhausted")
-			remaining_resource_planets.append(planet)
+		match planet.PLANET_TYPE:
+			Planet.PlanetType.MERCHANT:
+				planet.connect("resources_bought", self, "_planet_resources_bought")
+				remaining_merchant_planets.append(planet)
+			Planet.PlanetType.RESOURCE:
+				planet.connect("resources_exhausted", self, "_planet_resources_exhausted")
+				remaining_resource_planets.append(planet)
+			Planet.PlanetType.SHOP:
+				remaining_shop_planets.append(planet)
 
 
 func _level_complete() -> void:
@@ -140,8 +149,19 @@ func _on_Spaceship_update_miner_count(value) -> void:
 	resource_ui.update_num_miners(value)
 
 
-func _on_Spaceship_update_credits(value) -> void:
+func _on_Spaceship_update_credits(old_value, value) -> void:
 	resource_ui.update_credits(value)
+	for planet in remaining_shop_planets:
+		if planet.unlocked and value >= planet.min_cost:
+			planet.show_notification(true)
+		else:
+			planet.show_notification(false)
+	
+	if value >= credits_held_pirate_threshold and old_value < credits_held_pirate_threshold:
+		WorldEvents.emit_signal("credits_held_pirate_threshold", player_ship.credits_held, player_ship)
+		var notification_popup = NotificationPopup.instance()
+		gui.add_child(notification_popup)
+		notification_popup.display_notification("Nearby competitors alerted to your riches!")
 
 
 func _on_Spaceship_show_shop(num_credits, shop_planet) -> void:

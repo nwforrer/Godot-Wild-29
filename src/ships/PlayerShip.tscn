@@ -5,6 +5,7 @@
 [ext_resource path="res://src/ships/PlayerShip.gd" type="Script" id=3]
 
 [node name="PlayerShip" instance=ExtResource( 2 )]
+collision_layer = 18
 script = ExtResource( 3 )
 
 [node name="PlayerController" parent="." index="5" instance=ExtResource( 1 )]

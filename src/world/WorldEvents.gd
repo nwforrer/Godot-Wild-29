@@ -1,8 +1,4 @@
 extends Node
 
-enum ItemType {
-	MINERS,
-}
-
-var miner_upgrade_unlocked: bool = false
-
+# warning-ignore:unused_signal
+signal credits_held_pirate_threshold(credits_amount, player_ship)

@@ -222,7 +222,8 @@ texture = ExtResource( 7 )
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -15.0
+margin_top = -17.45
+margin_bottom = -2.44995
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -232,5 +233,5 @@ margin_left = 132.0
 margin_right = 187.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 55, 15 )
-text = "Close"
+text = "Got it"
 [connection signal="pressed" from="CenterContainer/CloseButton" to="." method="_on_CloseButton_pressed"]

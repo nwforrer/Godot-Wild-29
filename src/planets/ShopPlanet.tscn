@@ -4,12 +4,11 @@
 [ext_resource path="res://assets/merchant_planet.png" type="Texture" id=2]
 [ext_resource path="res://src/planets/ShopPlanet.gd" type="Script" id=3]
 [ext_resource path="res://src/world/OffscreenMarker.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/ui/shop_items/MinerShopItem.tres" type="Resource" id=5]
+[ext_resource path="res://assets/quest_marker.png" type="Texture" id=6]
 
 [node name="ShopPlanet" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 PLANET_TYPE = 2
-shop_items = [ ExtResource( 5 ) ]
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
@@ -19,5 +18,10 @@ visible = false
 
 [node name="Icon" parent="OffscreenMarker/Marker" index="1"]
 texture = ExtResource( 2 )
+
+[node name="QuestMarker" type="Sprite" parent="." index="4"]
+visible = false
+position = Vector2( -0.496063, -24.307 )
+texture = ExtResource( 6 )
 
 [editable path="OffscreenMarker"]
