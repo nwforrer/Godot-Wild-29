@@ -31,6 +31,6 @@ wait_time = 5.0
 one_shot = true
 
 [node name="TypingTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.05
 [connection signal="timeout" from="NotificationTimer" to="." method="_on_NotificationTimer_timeout"]
 [connection signal="timeout" from="TypingTimer" to="." method="_on_TypingTimer_timeout"]

@@ -56,13 +56,6 @@ func set_credits_held(value: int) -> void:
 	credits_held = value
 
 
-func camera_zoom_updated(zoom_amount) -> void:
-	if zoom_amount == 1:
-		movement_controller.max_speed = movement_controller.CLOSE_MAX_SPEED
-	else:
-		movement_controller.max_speed = movement_controller.FAR_MAX_SPEED
-
-
 func _on_PlayerController_launch_miner() -> void:
 	_launch_miner()
 

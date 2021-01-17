@@ -76,6 +76,13 @@ func _launch_miner():
 		self.num_miners -= 1
 
 
+func camera_zoom_updated(zoom_amount) -> void:
+	if zoom_amount == 1:
+		movement_controller.max_speed = movement_controller.CLOSE_MAX_SPEED
+	else:
+		movement_controller.max_speed = movement_controller.FAR_MAX_SPEED
+
+
 func set_resources_held(value: int) -> void:
 	resources_held = value
 

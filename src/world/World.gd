@@ -120,6 +120,9 @@ func _on_Spaceship_update_resources(value) -> void:
 func _on_Camera2D_camera_zoom_updated(zoom_amount) -> void:
 	if player_ship:
 		player_ship.camera_zoom_updated(zoom_amount)
+	if current_level:
+		for ship in current_level.get_node("EnemyShips").get_children():
+			ship.camera_zoom_updated(zoom_amount)
 
 
 func _on_Spaceship_show_dialog(text) -> void:
