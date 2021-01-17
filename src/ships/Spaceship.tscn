@@ -15,6 +15,9 @@ radius = 31.5274
 [node name="Spaceship" type="KinematicBody2D"]
 collision_layer = 2
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="GatheringComponent" parent="." instance=ExtResource( 3 )]
 CONTROLLING_NODE = NodePath("..")

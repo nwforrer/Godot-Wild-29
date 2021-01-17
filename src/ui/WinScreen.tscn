@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/ui/default_theme.tres" type="Theme" id=1]
-[ext_resource path="res://src/ui/GameOverScreen.gd" type="Script" id=2]
+[ext_resource path="res://src/ui/WinScreen.gd" type="Script" id=2]
 
-[node name="GameOverScreen" type="Control"]
+[node name="WinScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
@@ -15,28 +15,25 @@ __meta__ = {
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 59.0
+margin_left = 17.0
 margin_top = 63.0
-margin_right = 259.0
+margin_right = 302.0
 margin_bottom = 116.0
-rect_min_size = Vector2( 200, 0 )
 
-[node name="GameOverLabel" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 200.0
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 285.0
 margin_bottom = 18.0
-text = "Game over"
+text = "Congratulations!"
 align = 1
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 margin_top = 22.0
-margin_right = 200.0
+margin_right = 285.0
 margin_bottom = 53.0
-text = "All the planet resources have been exhausted"
+rect_min_size = Vector2( 285, 0 )
+text = "You have succesfully rescued your family"
 align = 1
 autowrap = true
 
@@ -58,13 +55,13 @@ margin_top = 3.0
 margin_right = 85.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 85, 15 )
-text = "Play again"
+text = "Play Again"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 margin_top = 22.0
 margin_right = 85.0
 margin_bottom = 37.0
-rect_min_size = Vector2( 0, 15 )
+rect_min_size = Vector2( 85, 15 )
 text = "Quit"
 [connection signal="pressed" from="VBoxContainer/PlayAgainButton" to="." method="_on_PlayAgainButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

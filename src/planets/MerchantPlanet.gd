@@ -1,6 +1,7 @@
 extends Planet
 
 signal resources_bought(planet)
+signal resupplied(planet)
 
 export(String) var MERCHANT_DIALOG
 
@@ -8,6 +9,7 @@ export(int) var RESOURCE_REQUEST_AMOUNT
 
 onready var quest_marker = $QuestMarker
 onready var offscreen_marker = $OffscreenMarker
+onready var resupply_timer = $ResupplyTimer
 
 var can_buy: bool = true
 
@@ -35,9 +37,17 @@ func sell_resources() -> void:
 	quest_marker.hide()
 	offscreen_marker.disabled = true
 	trigger_unlocks()
+	resupply_timer.start()
 
 
 func unlock() -> void:
 	.unlock()
+	quest_marker.show()
+	offscreen_marker.disabled = false
+
+
+func _on_ResupplyTimer_timeout() -> void:
+	emit_signal("resupplied", self)
+	can_buy = true
 	quest_marker.show()
 	offscreen_marker.disabled = false

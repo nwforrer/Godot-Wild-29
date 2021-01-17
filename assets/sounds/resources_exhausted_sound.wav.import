@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/resources_exhausted_sound.wav-dcea5eab23ac7eda69810901415a11cd.sample"
+
+[deps]
+
+source_file="res://assets/sounds/resources_exhausted_sound.wav"
+dest_files=[ "res://.import/resources_exhausted_sound.wav-dcea5eab23ac7eda69810901415a11cd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

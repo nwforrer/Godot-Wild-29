@@ -21,7 +21,8 @@ func set_is_active(value: bool) -> void:
 
 
 func _on_credits_held_pirate_threshold(_credits_amount, player_ship) -> void:
-	ai_controller.chase_player(player_ship)
+	if randf() < 0.3:
+		ai_controller.chase_player(player_ship)
 
 
 func _on_InteractionArea_body_entered(body: Node) -> void:

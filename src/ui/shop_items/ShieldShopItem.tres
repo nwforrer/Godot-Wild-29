@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://src/ui/shop_items/ShopItem.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+item_type = 1
+item_name = "Shield"
+item_description = "Reduce speed that enemies can steal your resources"
+item_cost = 15

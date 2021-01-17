@@ -21,3 +21,7 @@ texture = ExtResource( 4 )
 
 [node name="OffscreenMarker" parent="." index="4" instance=ExtResource( 5 )]
 visible = false
+
+[node name="ResupplyTimer" type="Timer" parent="." index="5"]
+wait_time = 30.0
+[connection signal="timeout" from="ResupplyTimer" to="." method="_on_ResupplyTimer_timeout"]

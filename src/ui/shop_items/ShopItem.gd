@@ -3,6 +3,7 @@ class_name ShopItem
 
 enum ItemType {
 	MINER,
+	SHIELD,
 }
 
 export(ItemType) var item_type

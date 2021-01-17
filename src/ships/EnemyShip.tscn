@@ -18,6 +18,8 @@ GATHER_SPEED = 2.0
 texture = ExtResource( 2 )
 
 [node name="MovementController" parent="." index="3"]
+CLOSE_MAX_SPEED = 65.0
+FAR_MAX_SPEED = 150.0
 Target = NodePath("../../EnemyShip")
 
 [node name="AIController" parent="." index="5" instance=ExtResource( 3 )]

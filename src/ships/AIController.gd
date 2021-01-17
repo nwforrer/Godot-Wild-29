@@ -55,7 +55,7 @@ func chase_player(player) -> void:
 
 func handle_planet_interaction(body: Planet) -> void:
 	if body == destination:
-		movement_controller.movement_dir = Vector2.ZERO
+		movement_controller.stop_movement_immediately()
 		at_destination = true
 
 

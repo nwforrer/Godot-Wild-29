@@ -6,17 +6,24 @@
 [ext_resource path="res://src/planets/ShopPlanet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/ships/EnemyShip.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/ui/shop_items/MinerShopItem.tres" type="Resource" id=6]
-[ext_resource path="res://src/ui/shop_items/EfficientExtractorShopItem.tres" type="Resource" id=7]
+[ext_resource path="res://src/world/Trigger.tscn" type="PackedScene" id=8]
 
 [node name="Level00" instance=ExtResource( 3 )]
 
 [node name="EnemyShip" parent="EnemyShips" index="0" instance=ExtResource( 5 )]
-position = Vector2( 320, -359 )
+position = Vector2( 298.581, -1050.7 )
 is_active = false
+
+[node name="EnemyShip2" parent="EnemyShips" index="1" instance=ExtResource( 5 )]
+position = Vector2( -1118.83, -1983.04 )
+is_active = false
+
+[node name="MovementController" parent="EnemyShips/EnemyShip2" index="3"]
+Target = NodePath("..")
 
 [node name="MerchantPlanet" parent="Planets" index="0" instance=ExtResource( 1 )]
 position = Vector2( -60.417, 54.7873 )
-unlocks_objects = [ NodePath("../MerchantPlanet2"), NodePath("../MerchantPlanet3"), NodePath("../../EnemyShips/EnemyShip"), NodePath("../ShopPlanet") ]
+unlocks_objects = [ NodePath("../MerchantPlanet2"), NodePath("../MerchantPlanet3"), NodePath("../../EnemyShips/EnemyShip"), NodePath("../ShopPlanet"), NodePath("../MerchantPlanet4"), NodePath("../MerchantPlanet5"), NodePath("../MerchantPlanet6"), NodePath("../../EnemyShips/EnemyShip2") ]
 RESOURCE_REQUEST_AMOUNT = 5
 
 [node name="MerchantPlanet2" parent="Planets" index="1" instance=ExtResource( 1 )]
@@ -29,22 +36,72 @@ position = Vector2( 340.658, -671.987 )
 unlocked = false
 RESOURCE_REQUEST_AMOUNT = 5
 
-[node name="ResourcePlanet" parent="Planets" index="3" instance=ExtResource( 2 )]
+[node name="MerchantPlanet4" parent="Planets" index="3" instance=ExtResource( 1 )]
+position = Vector2( -16.1265, -1546.01 )
+unlocked = false
+RESOURCE_REQUEST_AMOUNT = 5
+
+[node name="ResourcePlanet" parent="Planets" index="4" instance=ExtResource( 2 )]
 position = Vector2( 72.7592, 53.5513 )
 
-[node name="ResourcePlanet2" parent="Planets" index="4" instance=ExtResource( 2 )]
-position = Vector2( -433.241, -636.449 )
+[node name="ResourcePlanet2" parent="Planets" index="5" instance=ExtResource( 2 )]
+position = Vector2( -525.215, -729.683 )
 
-[node name="ResourcePlanet3" parent="Planets" index="5" instance=ExtResource( 2 )]
+[node name="ResourcePlanet3" parent="Planets" index="6" instance=ExtResource( 2 )]
 position = Vector2( -591.241, -556.449 )
 
-[node name="ResourcePlanet4" parent="Planets" index="6" instance=ExtResource( 2 )]
-position = Vector2( 592.759, -664.449 )
+[node name="MerchantPlanet6" parent="Planets" index="7" instance=ExtResource( 1 )]
+position = Vector2( -1784.29, -1238.35 )
+unlocked = false
+RESOURCE_REQUEST_AMOUNT = 5
 
-[node name="ResourcePlanet5" parent="Planets" index="7" instance=ExtResource( 2 )]
+[node name="ResourcePlanet13" parent="Planets" index="8" instance=ExtResource( 2 )]
+position = Vector2( -1982.06, -1314.38 )
+
+[node name="ResourcePlanet14" parent="Planets" index="9" instance=ExtResource( 2 )]
+position = Vector2( -2048.08, -1141.14 )
+
+[node name="ResourcePlanet4" parent="Planets" index="10" instance=ExtResource( 2 )]
+position = Vector2( 580.16, -777.842 )
+
+[node name="ResourcePlanet7" parent="Planets" index="11" instance=ExtResource( 2 )]
+position = Vector2( 196.947, -1626.38 )
+
+[node name="ResourcePlanet8" parent="Planets" index="12" instance=ExtResource( 2 )]
+position = Vector2( 179.957, -1474.42 )
+
+[node name="ResourcePlanet9" parent="Planets" index="13" instance=ExtResource( 2 )]
+position = Vector2( -190.042, -1490.47 )
+
+[node name="ResourcePlanet6" parent="Planets" index="14" instance=ExtResource( 2 )]
+position = Vector2( 549.922, -611.532 )
+
+[node name="ResourcePlanet5" parent="Planets" index="15" instance=ExtResource( 2 )]
 position = Vector2( 752.759, -654.449 )
 
-[node name="ShopPlanet" parent="Planets" index="8" instance=ExtResource( 4 )]
-position = Vector2( 894, -338 )
+[node name="MerchantPlanet5" parent="Planets" index="16" instance=ExtResource( 1 )]
+position = Vector2( 1442.92, -1179.34 )
 unlocked = false
-shop_items = [ ExtResource( 6 ), ExtResource( 7 ) ]
+RESOURCE_REQUEST_AMOUNT = 5
+
+[node name="ResourcePlanet10" parent="Planets" index="17" instance=ExtResource( 2 )]
+position = Vector2( 1682.42, -1285.19 )
+
+[node name="ResourcePlanet11" parent="Planets" index="18" instance=ExtResource( 2 )]
+position = Vector2( 1652.18, -1118.89 )
+
+[node name="ResourcePlanet12" parent="Planets" index="19" instance=ExtResource( 2 )]
+position = Vector2( 1855.02, -1161.8 )
+
+[node name="ShopPlanet" parent="Planets" index="20" instance=ExtResource( 4 )]
+position = Vector2( 2.05603, -1078.44 )
+unlocked = false
+shop_items = [ ExtResource( 6 ) ]
+
+[node name="Trigger" parent="." index="2" instance=ExtResource( 8 )]
+position = Vector2( -1.31531, 169.839 )
+unlock_objects = [ NodePath("../EnemyShips/EnemyShip"), NodePath("../EnemyShips/EnemyShip2"), NodePath("../Planets/MerchantPlanet2"), NodePath("../Planets/MerchantPlanet3"), NodePath("../Planets/MerchantPlanet4"), NodePath("../Planets/MerchantPlanet5"), NodePath("../Planets/MerchantPlanet6") ]
+
+[editable path="EnemyShips/EnemyShip"]
+
+[editable path="EnemyShips/EnemyShip2"]
