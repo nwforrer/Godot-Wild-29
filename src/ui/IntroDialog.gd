@@ -5,11 +5,11 @@ onready var dialog = $RichTextLabel
 
 
 func _ready() -> void:
-	dialog.percent_visible = 0
+	dialog.visible_characters = 0
 
 
 func _on_TypingTimer_timeout() -> void:
-	dialog.percent_visible += .01
+	dialog.visible_characters += 1
 
 
 func _on_Button_pressed() -> void:

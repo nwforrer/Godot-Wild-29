@@ -11,6 +11,7 @@ onready var quest_dialog_ui = $GUI/QuestDialog
 onready var sell_dialog_ui = $GUI/SellDialog
 onready var shop_ui = $GUI/ShopUI
 onready var next_level_ui = $GUI/NextLevelScreen
+onready var pause_ui = $GUI/PauseMenu
 onready var player_ship = $Spaceship
 
 var NotificationPopup = preload("res://src/ui/NotificationPopup.tscn")

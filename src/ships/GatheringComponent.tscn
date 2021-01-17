@@ -29,4 +29,5 @@ process_material = SubResource( 1 )
 stream = ExtResource( 2 )
 volume_db = -20.0
 attenuation = 3.13834
+bus = "Sound"
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

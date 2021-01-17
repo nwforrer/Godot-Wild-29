@@ -23,8 +23,11 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -137.0
-text = "This is the intro text to the game. You need to collect some amount of money so something bad doesn't happen to you. Good luck."
+margin_bottom = -145.0
+text = "You are a nomadic merchant moving from planet to planet collecting resources to sell to those that can afford them. 
+
+Your family has been taken hostage. The captors demand 100 credits for their release. Gather and sell resources, upgrade your ship, and compete with other merchants to earn the credits to free your family."
+fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -6,11 +6,15 @@ func _ready() -> void:
 
 
 func _on_StartButton_pressed() -> void:
-	# warning-ignore:return_value_discarded
 	SoundEffects.select_sound.play()
-	get_tree().change_scene("res://src/ui/IntroDialog.tscn")
+	SceneUtils.change_scene("res://src/ui/IntroDialog.tscn")
 
 
 func _on_QuitButton_pressed() -> void:
 	SoundEffects.select_sound.play()
 	get_tree().quit()
+
+
+func _on_OptionsButton_pressed() -> void:
+	SoundEffects.select_sound.play()
+	SceneUtils.change_scene("res://src/ui/OptionsMenu.tscn")

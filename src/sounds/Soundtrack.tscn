@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/sounds/Soundtrack.gd" type="Script" id=1]
+[ext_resource path="res://assets/sounds/main_song.wav" type="AudioStream" id=2]
+
+[node name="Soundtrack" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+soundtrack = [ ExtResource( 2 ) ]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+volume_db = -15.0
+bus = "Music"
+[connection signal="finished" from="Music" to="." method="_on_Music_finished"]

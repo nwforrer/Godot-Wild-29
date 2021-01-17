@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://src/ui/PauseMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/world/World.gd" type="Script" id=2]
 [ext_resource path="res://src/ships/PlayerShip.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/world/Camera2D.gd" type="Script" id=4]
@@ -9,6 +10,7 @@
 [ext_resource path="res://src/ui/QuestDialog.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/ui/SellDialog.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/levels/Level00.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/world/WorldInput.gd" type="Script" id=11]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
@@ -19,9 +21,16 @@ Levels = [ ExtResource( 10 ) ]
 [node name="RemoteTransform2D" parent="Spaceship" index="6"]
 remote_path = NodePath("../../Camera2D")
 
+[node name="EngineSound" parent="Spaceship" index="8"]
+bus = "Master"
+
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 script = ExtResource( 4 )
+
+[node name="WorldInput" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 11 )
 
 [node name="GUI" type="CanvasLayer" parent="."]
 
@@ -37,6 +46,9 @@ visible = false
 visible = false
 
 [node name="NextLevelScreen" parent="GUI" instance=ExtResource( 7 )]
+visible = false
+
+[node name="PauseMenu" parent="GUI" instance=ExtResource( 1 )]
 visible = false
 [connection signal="remove_dialog" from="Spaceship" to="." method="_on_Spaceship_remove_dialog"]
 [connection signal="show_dialog" from="Spaceship" to="." method="_on_Spaceship_show_dialog"]
