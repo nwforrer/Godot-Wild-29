@@ -14,7 +14,7 @@ onready var next_level_ui = $GUI/NextLevelScreen
 onready var pause_ui = $GUI/PauseMenu
 onready var player_ship = $Spaceship
 
-const GOAL_CREDITS := 75
+const GOAL_CREDITS := 60
 
 var NotificationPopup = preload("res://src/ui/NotificationPopup.tscn")
 

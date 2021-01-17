@@ -23,7 +23,7 @@ Target = NodePath("..")
 
 [node name="MerchantPlanet" parent="Planets" index="0" instance=ExtResource( 1 )]
 position = Vector2( -60.417, 54.7873 )
-unlocks_objects = [ NodePath("../MerchantPlanet2"), NodePath("../MerchantPlanet3"), NodePath("../../EnemyShips/EnemyShip"), NodePath("../ShopPlanet"), NodePath("../MerchantPlanet4"), NodePath("../MerchantPlanet5"), NodePath("../MerchantPlanet6"), NodePath("../../EnemyShips/EnemyShip2") ]
+unlocks_objects = [ NodePath("../MerchantPlanet2"), NodePath("../MerchantPlanet3"), NodePath("../../EnemyShips/EnemyShip"), NodePath("../ShopPlanet"), NodePath("../MerchantPlanet4"), NodePath("../MerchantPlanet5"), NodePath("../MerchantPlanet6"), NodePath("../../EnemyShips/EnemyShip2"), NodePath("../../Trigger") ]
 RESOURCE_REQUEST_AMOUNT = 5
 
 [node name="MerchantPlanet2" parent="Planets" index="1" instance=ExtResource( 1 )]

@@ -29,6 +29,7 @@ func set_remaining_resources(value: int) -> void:
 	remaining_resources = clamp(value, 0, MAX_RESOURCES) as int
 	sprite.modulate = Color.red.linear_interpolate(original_color_modulate, (remaining_resources as float) / MAX_RESOURCES)
 	if remaining_resources == 0 and can_regenerate:
+		sprite.modulate = Color("#260303")
 		exhausted_sound.play()
 		exhausted_effect.emitting = true
 		regenerate_timer.stop()

@@ -1,13 +1,107 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/ui/default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/ui/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://src/planets/ResourcePlanet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/ships/EnemyShip.tscn" type="PackedScene" id=4]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyShip" parent="." instance=ExtResource( 4 )]
+position = Vector2( -52.3563, 202.504 )
+
+[node name="Planets" type="Node" parent="."]
+
+[node name="ResourcePlanet" parent="Planets" instance=ExtResource( 3 )]
+position = Vector2( 36.7496, 31.4042 )
+MAX_RESOURCES = 5
+
+[node name="RegenerateTimer" parent="Planets/ResourcePlanet" index="3"]
+autostart = false
+
+[node name="ResourcePlanet2" parent="Planets" instance=ExtResource( 3 )]
+position = Vector2( 287.76, 143.657 )
+MAX_RESOURCES = 5
+
+[node name="RegenerateTimer" parent="Planets/ResourcePlanet2" index="3"]
+autostart = false
+
+[node name="ResourcePlanet3" parent="Planets" instance=ExtResource( 3 )]
+position = Vector2( 260.142, 41.4268 )
+MAX_RESOURCES = 5
+
+[node name="RegenerateTimer" parent="Planets/ResourcePlanet3" index="3"]
+autostart = false
+
+[node name="ResourcePlanet4" parent="Planets" instance=ExtResource( 3 )]
+position = Vector2( 156.575, 14.2544 )
+MAX_RESOURCES = 5
+
+[node name="RegenerateTimer" parent="Planets/ResourcePlanet4" index="3"]
+autostart = false
+
+[node name="ResourcePlanet5" parent="Planets" instance=ExtResource( 3 )]
+position = Vector2( 86.1149, 109.094 )
+MAX_RESOURCES = 5
+
+[node name="RegenerateTimer" parent="Planets/ResourcePlanet5" index="3"]
+autostart = false
+
+[node name="TitleLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -71.0
+margin_top = 33.7029
+margin_right = 71.0
+margin_bottom = 51.7029
+text = "Damon the merchant"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -93.5
+margin_top = -128.596
+margin_right = 93.5
+margin_bottom = -110.596
+text = "Made for Godot Wild Jam 29"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Theme" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -44.0
+margin_right = 187.0
+rect_min_size = Vector2( 0, 44 )
+text = "Theme: Nomad"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Theme2" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -187.0
+margin_top = -44.0
+text = "Wildcards: 
+Don't go alone
+Better, faster, stronger"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -46,3 +140,13 @@ text = "Quit"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+
+[editable path="Planets/ResourcePlanet"]
+
+[editable path="Planets/ResourcePlanet2"]
+
+[editable path="Planets/ResourcePlanet3"]
+
+[editable path="Planets/ResourcePlanet4"]
+
+[editable path="Planets/ResourcePlanet5"]

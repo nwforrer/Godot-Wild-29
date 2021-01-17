@@ -27,7 +27,7 @@ process_material = SubResource( 1 )
 
 [node name="ExtractingSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
-volume_db = -20.0
+volume_db = -25.0
 attenuation = 3.13834
 bus = "Sound"
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

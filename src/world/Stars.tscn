@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 10000, 10000, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color = Color( 0.984314, 0.960784, 0.937255, 1 )
+
+[node name="Stars" type="Particles2D"]
+amount = 10000
+lifetime = 120.0
+preprocess = 20.0
+fixed_fps = 1
+visibility_rect = Rect2( -5000, -5000, 10000, 10000 )
+process_material = SubResource( 1 )

@@ -1,4 +1,4 @@
-extends CenterContainer
+extends Control
 
 
 func _on_ResumeButton_pressed() -> void:

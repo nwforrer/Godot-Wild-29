@@ -1,8 +1,15 @@
 extends Control
 
+onready var enemy := $EnemyShip
+onready var planets := $Planets
 
 func _ready() -> void:
 	VisualServer.set_default_clear_color(Color("272744"))
+	
+	for planet in planets.get_children():
+		if planet.PLANET_TYPE == Planet.PlanetType.RESOURCE:
+			enemy.get_node("AIController").add_resource_planet(planet)
+	enemy.start_ai()
 
 
 func _on_StartButton_pressed() -> void:

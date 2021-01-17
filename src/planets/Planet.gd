@@ -33,7 +33,8 @@ func trigger_unlocks() -> void:
 	if unlocks_objects.size() > 0:
 		for object in unlocks_objects:
 			var o = get_node(object)
-			if o.has_method("unlock"):
-				o.unlock()
-			else:
-				print(str(o) + " is missing unlock method.")
+			if o:
+				if o.has_method("unlock"):
+					o.unlock()
+				else:
+					print(str(o) + " is missing unlock method.")
